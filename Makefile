@@ -6,7 +6,7 @@
 #    By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/19 16:27:07 by klima-do          #+#    #+#              #
-#    Updated: 2025/10/02 16:28:01 by klima-do         ###   ########.fr        #
+#    Updated: 2025/10/03 00:30:42 by klima-do         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ $(LIBFT):
 	@$(MAKE) -s -C $(LIBFT_DIR)
 
 %.o: %.c
-	@echo "⚙️  Compilando $<..."
+# 	@echo "⚙️  Compilando $<..."
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(LIBFT) $(OBJS)
