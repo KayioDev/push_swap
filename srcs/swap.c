@@ -6,42 +6,65 @@
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 17:50:57 by klima-do          #+#    #+#             */
-/*   Updated: 2025/09/30 20:50:11 by klima-do         ###   ########.fr       */
+/*   Updated: 2025/10/02 17:24:12 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack *stack_a)
+void	sa(t_stack *a)
 {
-	t_list	*n1;
-	t_list	*n2;
+	int	*c1;
+	int	*c2;
+	int	tmp;
 
-	if (!stack_a->top || !stack_a->top->next)
+	if (!a || !a->top || !a->top->next)
 		return ;
-	n1 = stack_a->top;
-	n2 = n1->next;
-	n1->next = n2->next;
-	n2->next = n1;
-	stack_a->top = n2;
+	c1 = a->top->content;
+	c2 = a->top->next->content;
+	tmp = *c1;
+	*c1 = *c2;
+	*c2 = tmp;
+	write(1, "sa\n", 3);
 }
 
-void	sb(t_stack *stack_b)
+void	sb(t_stack *b)
 {
-	t_list	*n1;
-	t_list	*n2;
+	int	*c1;
+	int	*c2;
+	int	tmp;
 
-	if (!stack_b->top || !stack_b->top->next)
+	if (!b || !b->top || !b->top->next)
 		return ;
-	n1 = stack_b->top;
-	n2 = n1->next;
-	n1->next = n2->next;
-	n2->next = n1;
-	stack_b->top = n2;
+	c1 = b->top->content;
+	c2 = b->top->next->content;
+	tmp = *c1;
+	*c1 = *c2;
+	*c2 = tmp;
+	write(1, "sb\n", 3);
 }
 
-void	ss(t_stack *stack_a, t_stack *stack_b)
+void	ss(t_stack *a, t_stack *b)
 {
-	sa(stack_a);
-	sb(stack_b);
+	int	*c1;
+	int	*c2;
+	int	tmp;
+
+	if (a && a->top && a->top->next)
+	{
+		c1 = a->top->content;
+		c2 = a->top->next->content;
+		tmp = *c1;
+		*c1 = *c2;
+		*c2 = tmp;
+	}
+	if (b && b->top && b->top->next)
+	{
+		c1 = b->top->content;
+		c2 = b->top->next->content;
+		tmp = *c1;
+		*c1 = *c2;
+		*c2 = tmp;
+	}
+	write(1, "ss\n", 3);
 }

@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   is_order.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 20:53:03 by klima-do          #+#    #+#             */
-/*   Updated: 2025/10/02 17:27:15 by klima-do         ###   ########.fr       */
+/*   Created: 2025/10/01 22:09:02 by klima-do          #+#    #+#             */
+/*   Updated: 2025/10/02 17:22:18 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pa(t_stack *a, t_stack *b)
+int	is_order(t_stack *stack)
 {
-	void	*content;
+	t_list	*node;
 
-	if (!b || !b->top)
-		return ;
-	content = pop(b);
-	push(a, content);
-	write(1, "pa\n", 3);
-}
-
-void	pb(t_stack *a, t_stack *b)
-{
-	void	*content;
-
-	if (!a || !a->top)
-		return ;
-	content = pop(a);
-	push(b, content);
-	write(1, "pb\n", 3);
+	if (!stack || !stack->top)
+		return (1);
+	node = stack->top;
+	while (node->next)
+	{
+		if (*(int *)node->content > *(int *)node->next->content)
+			return (0);
+		node = node->next;
+	}
+	return (1);
 }
