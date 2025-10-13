@@ -6,13 +6,14 @@
 #    By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/19 16:27:07 by klima-do          #+#    #+#              #
-#    Updated: 2025/10/06 18:56:14 by klima-do         ###   ########.fr        #
+#    Updated: 2025/10/13 16:24:18 by klima-do         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ----------------------------- CONFIGURAÇÕES -------------------------------- #
 
 NAME		= push_swap
+BONUS_NAME	= checker
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 INCLUDES	= -I. -I$(LIBFT_DIR)
@@ -20,8 +21,10 @@ INCLUDES	= -I. -I$(LIBFT_DIR)
 # ----------------------------- DIRETÓRIOS ---------------------------------- #
 
 SRC_DIR		= srcs
-UTIL_DIR	= utils
+UTIL_DIR	= $(SRC_DIR)/utils
 LIBFT_DIR	= Libft
+LIBFT		= $(LIBFT_DIR)/libft.a
+BONUS_DIR	= bonus
 
 # ----------------------------- ARQUIVOS ------------------------------------ #
 
@@ -40,31 +43,37 @@ SRC_FILES = \
 	cost_utils.c \
 	move_utils.c \
 	sort_chunks.c \
-	$(UTIL_DIR)/print_stack.c \
-	$(UTIL_DIR)/validators.c \
-	$(UTIL_DIR)/is_order.c
+	utils/print_stack.c \
+	utils/validators.c \
+	utils/is_order.c \
+	run_radix.c \
+	run_cust_sort.c \
+	main.c
 
-SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES)) main.c
-OBJS = $(SRCS:.c=.o)
-
-LIBFT = $(LIBFT_DIR)/libft.a
+OBJS = $(addprefix $(SRC_DIR)/, $(SRC_FILES:.c=.o))
 
 # ----------------------------- REGRAS PRINCIPAIS ---------------------------- #
 
 all: $(NAME)
 
+bonus:
+	@echo "📚 Compilando Checker..."
+	@$(MAKE) -s -C $(BONUS_DIR)
+	@echo "✅ Checker compilado!"
+
 $(LIBFT):
 	@echo "📚 Compilando Libft..."
 	@$(MAKE) -s -C $(LIBFT_DIR)
 
-%.o: %.c
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
 	@echo "⚙️  Compilando $<..."
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(LIBFT) $(OBJS)
 	@echo "🔗 Linkando $(NAME)..."
 	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LIBFT) -o $(NAME)
-	@echo "✅ Compilação concluída!"
+	@echo "✅ push_swap compilado!"
 
 # ----------------------------- LIMPEZA -------------------------------------- #
 
@@ -72,12 +81,15 @@ clean:
 	@echo "🧹 Limpando objetos..."
 	@rm -f $(OBJS)
 	@$(MAKE) -s -C $(LIBFT_DIR) clean
+	@$(MAKE) -s -C $(BONUS_DIR) clean
 
 fclean: clean
 	@echo "🧼 Limpando binários..."
 	@rm -f $(NAME)
+	@rm -f $(BONUS_DIR)/$(BONUS_NAME)
 	@$(MAKE) -s -C $(LIBFT_DIR) fclean
+	@$(MAKE) -s -C $(BONUS_DIR) fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
