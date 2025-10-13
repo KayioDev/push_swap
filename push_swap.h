@@ -6,7 +6,7 @@
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 17:26:40 by klima-do          #+#    #+#             */
-/*   Updated: 2025/10/06 18:55:18 by klima-do         ###   ########.fr       */
+/*   Updated: 2025/10/13 16:56:56 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "libft.h"
-
+# include "Libft/libft.h"
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 
@@ -62,7 +61,8 @@ void	bubble_sort(int *arr, int size);
 void	sort_three(t_stack *a);
 void	sort_five(t_stack *a, t_stack *b);
 void	radix_sort(t_stack *a, t_stack *b);
-
+int		run_radix(int argc, char **argv);
+int		run_cust_sort(int argc, char **argv);
 /* ----------------------------- FIND UTILS --------------------------------- */
 
 int		find_min_value(t_stack *s);

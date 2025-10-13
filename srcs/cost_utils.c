@@ -6,7 +6,7 @@
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 01:10:00 by klima-do          #+#    #+#             */
-/*   Updated: 2025/10/06 20:40:48 by klima-do         ###   ########.fr       */
+/*   Updated: 2025/10/10 17:10:19 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ t_cost	calculate_cost(t_stack *a, t_stack *b, t_list *n, int i)
 	c.total = calc_total_cost(c.cost_a, c.cost_b);
 	return (c);
 }
+
+//   7 6 5 4 3  2  1 0 //
 
 t_cost	find_cheapest(t_stack *a, t_stack *b)
 {
